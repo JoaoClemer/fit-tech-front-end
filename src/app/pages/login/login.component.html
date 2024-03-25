@@ -1,0 +1,48 @@
+<main>
+    <section class="form-section">
+        <img src="/assets/imgs/fit-tech-logo1-transparent.png" alt="">
+        <h2>Realize seu login</h2>
+        
+        <form [formGroup]="loginForm">
+
+            <app-primary-input
+            formControlName="email"
+            inputName="email"
+            type="email"
+            placeholder="exemplo@email.com"
+            label="E-mail"
+            icon="bi bi-envelope"
+            [formGroup]="loginForm"
+            />
+
+            <app-primary-input
+            formControlName="password"
+            inputName="password"
+            type="password"
+            label="Senha"
+            icon="bi bi-lock"
+            [formGroup]="loginForm"
+            />
+
+            
+
+        </form>
+       
+        <div class="buttons-section">
+            <button class="btn-primary"> Login</button>
+            
+            <div class="divider">
+                <div></div>
+                <span>or</span>
+                <div></div>
+            </div>
+            
+            <button class="btn-secondary"> Sign up</button>
+        </div>
+        
+    </section>
+    <section class="main-section">
+        <h1> Fit Tech, sua academia bem gerenciada! </h1>
+        <img src="/assets/imgs/login-page.png" alt="">
+    </section>
+</main>
