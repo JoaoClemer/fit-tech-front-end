@@ -3,7 +3,7 @@
         <img src="/assets/imgs/fit-tech-logo1-transparent.png" alt="">
         <h2>Realize seu login</h2>
         
-        <form [formGroup]="loginForm">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
             <app-primary-input
             formControlName="email"
@@ -13,7 +13,19 @@
             label="E-mail"
             icon="bi bi-envelope"
             [formGroup]="loginForm"
+            (ngModelChange)="detectChange()"
             />
+
+            @if (submitted && form['email'].errors) {
+                <div class="invalid-feedback">
+                    @if (form['email'].errors['required']) {
+                        <span>Email é obrigatório!</span>
+                    }
+                    @if (form['email'].errors['email']) {
+                        <span>Esse email é inválido!</span>
+                    }
+                </div>
+            }
 
             <app-primary-input
             formControlName="password"
@@ -22,23 +34,27 @@
             label="Senha"
             icon="bi bi-lock"
             [formGroup]="loginForm"
+            (ngModelChange)="detectChange()"
             />
 
-            
+            @if (submitted && form['password'].errors) {
+                <div class="invalid-feedback">
+                    @if (form['password'].errors['required']) {
+                        <span>Senha é obrigatório!</span>
+                    }
+                    @if (form['password'].errors['minlength']) {
+                        <span>A senha deve ter pelo menos 6 caracteres</span>
+                    }
+                </div>
+            }
+
+
+            <div class="buttons-section">
+                <button type="submit" class="btn-primary"> Login</button>            
+            </div>            
 
         </form>
        
-        <div class="buttons-section">
-            <button class="btn-primary"> Login</button>
-            
-            <div class="divider">
-                <div></div>
-                <span>or</span>
-                <div></div>
-            </div>
-            
-            <button class="btn-secondary"> Sign up</button>
-        </div>
         
     </section>
     <section class="main-section">
