@@ -1,0 +1,127 @@
+@use 'colors' as *;
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background-color: $backgroud-secondary-gray;
+    transition: 0.4s;
+  
+    header{
+      position: relative;
+      transition: 0.4s;
+
+      .image-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s;
+        
+      .control{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        transition: 0.4s;
+
+        .sidebar-control{
+          border-radius: 20%;
+          font-size: 20px;
+          color: $secondary-color;
+          transition: 0.4s;
+
+          &:hover{
+            color: $first-color;
+            cursor: pointer;
+            }
+        }
+
+        .header-text{
+          font-size: 16px;
+          font-weight: 700;
+          display: flex;
+          margin-right: auto;
+          transition: 0.4s;
+        }
+
+      }
+
+      .image{
+        min-width: 60px;
+        display: flex;
+        align-items: center;
+        img {
+          width: 100px;
+        }
+        transition: 0.4s;
+      }               
+        
+      }
+    }
+  
+    .menu-bar{
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: 0.4s;
+
+      li{
+        height: 50px;
+        margin-top: 10px;
+        list-style: none;
+        display: flex;
+        transition: 0.4s;
+
+        a{
+          height: 100%;
+          width: 100%;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          transition: 0.4s;
+          border-radius: 10px;
+
+          &:hover {
+            color: $secondary-color;
+            font-weight: 600;
+            background-color: $first-color;
+
+            i{
+              color: $secondary-color;
+            }
+
+            span{
+              color: $secondary-color;
+            }
+          }
+
+          i{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 60px;
+            font-size: 20px;
+            color: black;
+            transition: 0.4s;
+          }
+
+          span{
+            color: black;
+          }
+
+          .logout{
+            color: red;
+          }
+        }
+      }
+    }
+}
+
+.sidebar.close{
+  width: 80px;
+  transition: 0.4s;
+}
