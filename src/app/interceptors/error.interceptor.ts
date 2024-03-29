@@ -18,7 +18,9 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
     const validError = typeof err.error ! == "string";
     const title = validError ? err.error.title : "Ops.. tivemos algum problema ao realizar a requisição."
-    const message = err.statusText
+    const message = err.error.messages
+
+    console.log(err);
 
     Swal.fire({
       icon: "error",
