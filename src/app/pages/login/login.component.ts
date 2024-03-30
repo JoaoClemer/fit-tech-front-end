@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { PrimaryInputComponent } from '../../components/primary-input/primary-input.component';
 import { UserType } from '../../models/enum/user-type';
 import { RequestDoLoginModel } from '../../models/request/login/request-do-login-model';
@@ -19,7 +20,8 @@ export class LoginComponent {
 
   constructor(
     private loginService: LoginService,
-    private tokenService: TokenService){
+    private tokenService: TokenService,
+    private router: Router){
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
@@ -56,6 +58,8 @@ export class LoginComponent {
       
       this.tokenService.clear();
       this.tokenService.set(result.name, result.token);
+
+      this.router.navigate(['']);
 
     });
 

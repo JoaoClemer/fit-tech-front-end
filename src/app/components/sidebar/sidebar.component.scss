@@ -1,5 +1,8 @@
 @use 'colors' as *;
 
+.main{
+  display: flex;
+}
 .sidebar {
     position: fixed;
     top: 0;
@@ -84,6 +87,20 @@
           align-items: center;
           transition: 0.4s;
           border-radius: 10px;
+
+          &.active{
+            color: $secondary-color;
+            font-weight: 600;
+            background-color: $first-color;
+
+            span{
+              color: $secondary-color;
+            }
+
+            i{
+              color: $secondary-color;
+            }
+          }
 
           &:hover {
             color: $secondary-color;

@@ -1,0 +1,15 @@
+<app-loading></app-loading>
+
+<div class="main">
+
+    <div class="sidebar" [class.close]="!siderbarIsOpen">
+        <app-sidebar (sidebarStatus)="changeSideBarStatus($event)"/>
+    </div>
+
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+    
+
+    
+</div>
