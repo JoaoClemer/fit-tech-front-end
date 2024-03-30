@@ -1,0 +1,89 @@
+<div class="main">
+    <nav class="sidebar" [class.close]="!sidebarOpen">
+        <header>
+            <div class="image-text">
+                
+                <span class="image">
+                    <img src="../assets/imgs/fit-tech-logo2-transparent.png">
+                </span>
+                
+                <div class="control">
+    
+                    <div class="header-text">
+                        @if (sidebarOpen) {<span class="gym-name">Gym Name</span>}                   
+                    </div>
+    
+                    <div class="sidebar-control" (click)="openOrCloseSideBar()">
+                        @if (sidebarOpen) {<i class="bi bi-arrow-left-circle-fill"></i>}
+                        @else {<i class="bi bi-arrow-right-circle-fill"></i>}
+                        
+                    </div>
+                    
+                       
+                </div>                
+                
+            </div>
+    
+        </header>
+    
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+    
+                    <li>
+                        <a class="nav-link" routerLink="/home" routerLinkActive="active">
+                            <i class="bi bi-house"></i>
+                            @if (sidebarOpen) {<span class="nav-text">Início</span>}                       
+                        </a>
+                    </li>
+    
+                    <li>
+                        <a class="nav-link" routerLink="/students" routerLinkActive="active">
+                            <i class="bi bi-person-gear"></i>
+                            @if (sidebarOpen) {<span class="nav-text">Alunos</span>}                        
+                        </a>
+                    </li>
+    
+                    <li>
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-person-vcard"></i>
+                            @if (sidebarOpen) {<span class="nav-text">Funcionários</span>}                        
+                        </a>
+                    </li>
+    
+                    <li>
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-award"></i>                        
+                            @if (sidebarOpen) {<span class="nav-text">Planos</span>}
+                        </a>
+                    </li>
+    
+                    <li>
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-person-arms-up"></i>
+                            @if (sidebarOpen) {<span class="nav-text">Exercicios</span>}                        
+                        </a>
+                    </li>
+    
+    
+                </ul>
+            </div>
+    
+            <div class="bottom-content">
+                <li>
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-house"></i>
+                        @if (sidebarOpen) {<span class="nav-text">Perfil</span>}                      
+                    </a>
+                </li>
+    
+                <li class="logout" (click)="logOut()">
+                    <a  href="#">
+                        <i class="bi bi-box-arrow-left logout"></i>
+                        @if (sidebarOpen) {<span class="nav-text logout">Sair</span>}                
+                    </a>
+                </li>
+            </div>
+        </div>
+    </nav>
+</div>

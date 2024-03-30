@@ -1,0 +1,14 @@
+.main{
+  display: flex;
+  flex-direction: row;
+
+  .sidebar{
+    margin-right: 270px;
+    transition: 0.4s;
+  }
+
+  .sidebar.close{
+    margin-right: 90px;
+    transition: 0.4s;
+  }
+}

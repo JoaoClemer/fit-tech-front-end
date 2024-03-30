@@ -1,0 +1,140 @@
+<div class="content">
+    <div class="header">
+        
+        <h3> Alunos </h3>
+        <div>
+            <span>GymName > Students</span>
+        </div>
+    </div>
+
+    <div class="info-cards">
+        <app-info-card 
+            text="Novos alunos"
+            icon="bi bi-person-fill-up"
+            color="blue"
+            value="3,230.00"/>
+    
+            <app-info-card 
+            text="Novos alunos"
+            icon="bi bi-person-fill-up"
+            color="blue"
+            value="3,230.00"/>
+    
+            <app-info-card 
+            text="Novos alunos"
+            icon="bi bi-person-fill-up"
+            color="blue"
+            value="3,230.00"/>
+
+            <app-info-card 
+            text="Novos alunos"
+            icon="bi bi-person-fill-up"
+            color="blue"
+            value="3,230.00"/>
+    </div>
+
+    <div class="filters">
+        
+        <form [formGroup]="searchForm">
+
+            <div class="input">
+                <app-primary-input
+                inputName="search"
+                icon="bi bi-search"
+                placeholder="Procure pelo nome"
+                [formGroup]="searchForm"
+                formControlName="searchText"/>
+        
+                <button (click)="search()">Buscar</button>
+                </div>
+                
+        </form>
+        
+        <div class="buttons">
+            <button class="all" (click)="getAll()">Todos</button>
+            <button class="active" (click)="getOnlyActives()">Ativos</button>
+            <button class="inactive" (click)="getOnlyInatives()">Inativos</button>
+        </div>
+
+    </div>
+    
+    <div class="board">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <td>Nome</td>
+                    <td>Plano</td>
+                    <td>Status</td>
+                    <td>Data exp</td>
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (student of students; track student.id) {
+
+                    <tr>
+                        <td class="people">
+                            <img src="/assets/imgs/user-img.png" alt="">
+                            <div class="people-desc">
+                                <h5>{{student.name}}</h5>
+                                <p>{{student.email}}</p>
+                            </div>
+                        </td>
+    
+                        <td class="plan">
+
+                            @if (student.planName) { <h5>{{student.planName}}</h5> }
+
+                            @else { <h5>Sem plano</h5> }
+                            
+                        </td>
+    
+                        @if (student.planIsActive) {
+
+                            <td class="status active">
+                            
+                                <p>Ativo</p> 
+                                
+                            </td>
+                        }
+                        @else {
+
+                            <td class="status inative">
+                            
+                                <p>Inativo</p> 
+                                
+                            </td>
+                        }
+                            
+                        <td class="expired-date">
+                            <p>{{convertDate(student.planExpirationDate.toString()) }}</p>
+                        </td>
+    
+                        <td class="edit">
+                            <button>Editar <i class="bi bi-pencil-fill"></i> </button>
+                        </td>
+                    </tr>
+
+                }
+                                
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination">
+
+        @for (page of totalPages; track $index) {
+            
+            @if(page == currentPage){
+
+                <span class="currentPage">{{page}}</span>
+            }
+            @else {
+                <span (click)="changePage(page)">{{page}}</span>
+            }
+            
+        }
+        
+    </div>
+    
+</div>

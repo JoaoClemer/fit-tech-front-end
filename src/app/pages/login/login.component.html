@@ -1,0 +1,64 @@
+<main>
+    <section class="form-section">
+        <img src="/assets/imgs/fit-tech-logo1-transparent.png" alt="">
+        <h2>Realize seu login</h2>
+        
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+            <app-primary-input
+            formControlName="email"
+            inputName="email"
+            type="email"
+            placeholder="exemplo@email.com"
+            label="E-mail"
+            icon="bi bi-envelope"
+            [formGroup]="loginForm"
+            (ngModelChange)="detectChange()"
+            />
+
+            @if (submitted && form['email'].errors) {
+                <div class="invalid-feedback">
+                    @if (form['email'].errors['required']) {
+                        <span>Email é obrigatório!</span>
+                    }
+                    @if (form['email'].errors['email']) {
+                        <span>Esse email é inválido!</span>
+                    }
+                </div>
+            }
+
+            <app-primary-input
+            formControlName="password"
+            inputName="password"
+            type="password"
+            label="Senha"
+            icon="bi bi-lock"
+            [formGroup]="loginForm"
+            (ngModelChange)="detectChange()"
+            />
+
+            @if (submitted && form['password'].errors) {
+                <div class="invalid-feedback">
+                    @if (form['password'].errors['required']) {
+                        <span>Senha é obrigatório!</span>
+                    }
+                    @if (form['password'].errors['minlength']) {
+                        <span>A senha deve ter pelo menos 6 caracteres</span>
+                    }
+                </div>
+            }
+
+
+            <div class="buttons-section">
+                <button type="submit" class="btn-primary"> Login</button>            
+            </div>            
+
+        </form>
+       
+        
+    </section>
+    <section class="main-section">
+        <h1> Fit Tech, sua academia bem gerenciada! </h1>
+        <img src="/assets/imgs/login-page.png" alt="">
+    </section>
+</main>
