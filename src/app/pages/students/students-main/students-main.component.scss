@@ -14,11 +14,11 @@
     display: flex;
     justify-content: space-between;
     gap: 30px;
+    margin-bottom: 20px;
   }
 
   .board{
     width: 100%;
-    margin-top: 30px;
     overflow: auto;
     background-color: $backgroud-gray;
     border-radius: 10px;
@@ -114,4 +114,80 @@
     }
     
   }
+
+  .filters{
+    display: flex;
+    margin-bottom: 5px;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    .input{
+      width: 400px;
+    }
+
+    .buttons{
+      display: flex;
+      gap: 3px;
+
+      button{
+        padding: 10px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+
+        &.all{
+          background-color: #d0d0d0;
+          
+          &:hover{
+            background-color: #5b5b5b;
+          }
+        }
+
+        &.active{
+          background-color: #d7fada;
+          
+          &:hover{
+            background-color: #86f890;
+          }
+        }
+
+        &.inactive{
+          background-color:#fad7d7 ;
+
+          &:hover{
+            background-color: #ff5a5a;
+          }
+
+        }
+      }
+    }
+
+  }
+
+  .pagination{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+
+    span{
+      background-color: $secondary-color;
+      width: 30px;
+      text-align: center;
+      color: $first-color;
+      border-radius: 20px;
+      padding: 6px;
+      cursor: pointer;
+
+      &:hover{         
+        background-color: $first-color;
+        color: $secondary-color;
+      }
+    }
+  }
+    
+
 }
