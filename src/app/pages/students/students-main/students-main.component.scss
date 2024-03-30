@@ -117,13 +117,32 @@
 
   .filters{
     display: flex;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
 
     .input{
-      width: 400px;
+      width: 600px;
+      display: flex;
+      gap: 10px;
+
+      button{
+        padding: 8px;
+        border-radius: 20px;
+        border: none;
+        background-color: $secondary-color;
+        color: $first-color;
+        font-weight: 500;
+        cursor: pointer;
+
+        &:hover{
+          
+          background-color: $first-color;
+          color: $secondary-color;
+        }
+      }
+      
     }
 
     .buttons{
@@ -153,7 +172,7 @@
         }
 
         &.inactive{
-          background-color:#fad7d7 ;
+          background-color:#fad7d7;
 
           &:hover{
             background-color: #ff5a5a;
@@ -183,6 +202,11 @@
       cursor: pointer;
 
       &:hover{         
+        background-color: $first-color;
+        color: $secondary-color;
+      }
+
+      &.currentPage{
         background-color: $first-color;
         color: $secondary-color;
       }

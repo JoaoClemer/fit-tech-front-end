@@ -35,20 +35,29 @@
 
     <div class="filters">
         
-        <div class="input">
-        <app-primary-input
-        inputName="search"
-        icon="bi bi-search"
-        placeholder="Digite o nome de um usuário"/>
-        </div>
-        
+        <form [formGroup]="searchForm">
 
+            <div class="input">
+                <app-primary-input
+                inputName="search"
+                icon="bi bi-search"
+                placeholder="Procure pelo nome"
+                [formGroup]="searchForm"
+                formControlName="searchText"/>
+        
+                <button (click)="search()">Buscar</button>
+                </div>
+                
+        </form>
+        
         <div class="buttons">
-            <button class="all">Todos</button>
-            <button class="active">Ativos</button>
-            <button class="inactive">Inativos</button>
+            <button class="all" (click)="getAll()">Todos</button>
+            <button class="active" (click)="getOnlyActives()">Ativos</button>
+            <button class="inactive" (click)="getOnlyInatives()">Inativos</button>
         </div>
+
     </div>
+    
     <div class="board">
         <table width="100%">
             <thead>
@@ -60,165 +69,72 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="people">
-                        <img src="/assets/imgs/user-img.png" alt="">
-                        <div class="people-desc">
-                            <h5>Name</h5>
-                            <p>email.email.com</p>
-                        </div>
-                    </td>
 
-                    <td class="plan">
-                        <h5>Plan Name</h5>
-                    </td>
+                @for (student of students; track student.id) {
 
-                    <td class="status active">
-                        <p>PlanStatus</p>
-                    </td>
+                    <tr>
+                        <td class="people">
+                            <img src="/assets/imgs/user-img.png" alt="">
+                            <div class="people-desc">
+                                <h5>{{student.name}}</h5>
+                                <p>{{student.email}}</p>
+                            </div>
+                        </td>
+    
+                        <td class="plan">
 
-                    <td class="expired-date">
-                        <p>10/10/2023</p>
-                    </td>
+                            @if (student.planName) { <h5>{{student.planName}}</h5> }
 
-                    <td class="edit">
-                        <button>Editar <i class="bi bi-pencil-fill"></i> </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="people">
-                        <img src="/assets/imgs/user-img.png" alt="">
-                        <div class="people-desc">
-                            <h5>Name</h5>
-                            <p>email.email.com</p>
-                        </div>
-                    </td>
+                            @else { <h5>Sem plano</h5> }
+                            
+                        </td>
+    
+                        @if (student.planIsActive) {
 
-                    <td class="plan">
-                        <h5>Plan Name</h5>
-                    </td>
+                            <td class="status active">
+                            
+                                <p>Ativo</p> 
+                                
+                            </td>
+                        }
+                        @else {
 
-                    <td class="status active">
-                        <p>PlanStatus</p>
-                    </td>
+                            <td class="status inative">
+                            
+                                <p>Inativo</p> 
+                                
+                            </td>
+                        }
+                            
+                        <td class="expired-date">
+                            <p>{{convertDate(student.planExpirationDate.toString()) }}</p>
+                        </td>
+    
+                        <td class="edit">
+                            <button>Editar <i class="bi bi-pencil-fill"></i> </button>
+                        </td>
+                    </tr>
 
-                    <td class="expired-date">
-                        <p>10/10/2023</p>
-                    </td>
-
-                    <td class="edit">
-                        <button>Editar <i class="bi bi-pencil-fill"></i> </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="people">
-                        <img src="/assets/imgs/user-img.png" alt="">
-                        <div class="people-desc">
-                            <h5>Name</h5>
-                            <p>email.email.com</p>
-                        </div>
-                    </td>
-
-                    <td class="plan">
-                        <h5>Plan Name</h5>
-                    </td>
-
-                    <td class="status active">
-                        <p>PlanStatus</p>
-                    </td>
-
-                    <td class="expired-date">
-                        <p>10/10/2023</p>
-                    </td>
-
-                    <td class="edit">
-                        <button>Editar <i class="bi bi-pencil-fill"></i> </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="people">
-                        <img src="/assets/imgs/user-img.png" alt="">
-                        <div class="people-desc">
-                            <h5>Name</h5>
-                            <p>email.email.com</p>
-                        </div>
-                    </td>
-
-                    <td class="plan">
-                        <h5>Plan Name</h5>
-                    </td>
-
-                    <td class="status active">
-                        <p>PlanStatus</p>
-                    </td>
-
-                    <td class="expired-date">
-                        <p>10/10/2023</p>
-                    </td>
-
-                    <td class="edit">
-                        <button>Editar <i class="bi bi-pencil-fill"></i> </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="people">
-                        <img src="/assets/imgs/user-img.png" alt="">
-                        <div class="people-desc">
-                            <h5>Name</h5>
-                            <p>email.email.com</p>
-                        </div>
-                    </td>
-
-                    <td class="plan">
-                        <h5>Plan Name</h5>
-                    </td>
-
-                    <td class="status active">
-                        <p>PlanStatus</p>
-                    </td>
-
-                    <td class="expired-date">
-                        <p>10/10/2023</p>
-                    </td>
-
-                    <td class="edit">
-                        <button>Editar <i class="bi bi-pencil-fill"></i> </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="people">
-                        <img src="/assets/imgs/user-img.png" alt="">
-                        <div class="people-desc">
-                            <h5>Name</h5>
-                            <p>email.email.com</p>
-                        </div>
-                    </td>
-
-                    <td class="plan">
-                        <h5>Plan Name</h5>
-                    </td>
-
-                    <td class="status active">
-                        <p>PlanStatus</p>
-                    </td>
-
-                    <td class="expired-date">
-                        <p>10/10/2023</p>
-                    </td>
-
-                    <td class="edit">
-                        <button>Editar <i class="bi bi-pencil-fill"></i> </button>
-                    </td>
-                </tr>
-                
+                }
+                                
             </tbody>
         </table>
     </div>
+
     <div class="pagination">
-        <span>1</span>
-        <span>3</span>
-        <span>4</span>
-        <span>5</span>
+
+        @for (page of totalPages; track $index) {
+            
+            @if(page == currentPage){
+
+                <span class="currentPage">{{page}}</span>
+            }
+            @else {
+                <span (click)="changePage(page)">{{page}}</span>
+            }
+            
+        }
+        
     </div>
     
 </div>
