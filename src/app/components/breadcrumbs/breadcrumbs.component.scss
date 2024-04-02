@@ -1,0 +1,33 @@
+@use 'colors' as *;
+:host {
+  display: block;
+
+  ul{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    padding: 0 16px;
+    li{
+      display: flex;
+      align-items: center;
+    }
+
+    a{
+      text-decoration: none;
+      color: $secondary-color;
+
+      &:hover{
+        color: $first-color;
+      }    
+    }
+
+    i{
+      color: $secondary-color;
+    }
+
+    .active{
+      color: $first-color;
+      font-weight: 500;
+    }
+  }
+}

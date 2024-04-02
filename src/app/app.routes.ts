@@ -10,8 +10,8 @@ export const routes: Routes = [
     {path: '', component:MainPageComponent, 
     children:
     [
-        {path:'home', component:HomeComponent, canActivate:[authGuard]},
-        {path: 'students', component:StudentsMainComponent, canActivate:[authGuard]}
+        {path:'home', component:HomeComponent, canActivate:[authGuard], data:{ breadcrumb: 'Home' }  },
+        {path: 'students', component:StudentsMainComponent, canActivate:[authGuard], data:{ breadcrumb: 'Students' }}
     ]},
 
     {path: 'login', component: LoginComponent}

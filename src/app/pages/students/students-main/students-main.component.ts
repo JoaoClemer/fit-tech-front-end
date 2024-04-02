@@ -1,6 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { BreadcrumbsComponent } from '../../../components/breadcrumbs/breadcrumbs.component';
 import { InfoCardComponent } from '../../../components/info-card/info-card.component';
 import { PrimaryInputComponent } from '../../../components/primary-input/primary-input.component';
 import { ResponseStudentInListModel } from '../../../models/response/student/response-student-in-list-model';
@@ -10,7 +11,7 @@ import { StudentService } from '../../../services/student.service';
 @Component({
   selector: 'app-students-main',
   standalone: true,
-  imports: [InfoCardComponent, PrimaryInputComponent, ReactiveFormsModule, LocalDateTimePipe],
+  imports: [InfoCardComponent, PrimaryInputComponent, ReactiveFormsModule, LocalDateTimePipe, BreadcrumbsComponent],
   templateUrl: './students-main.component.html',
   styleUrl: './students-main.component.scss'
 })

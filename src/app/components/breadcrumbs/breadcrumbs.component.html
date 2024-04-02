@@ -1,0 +1,15 @@
+<ul>
+
+    <li>
+        <a [routerLink]="'/home'">FitTech </a>
+        <i class="bi bi-chevron-right"></i>
+    </li>
+
+    @for (breadcrumb of breadCrumbService.breadcrumbs$ | async; track $index) {
+        <li>
+            <a [routerLink]="breadcrumb.path" routerLinkActive="active">{{breadcrumb.label}}</a>
+            <i class="bi bi-chevron-right"></i>
+        </li>
+    }
+    
+</ul>
