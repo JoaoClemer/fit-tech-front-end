@@ -107,7 +107,7 @@
                         }
                             
                         <td class="expired-date">
-                            <p>{{convertDate(student.planExpirationDate.toString()) }}</p>
+                            <p>{{student.planExpirationDate.toString() | localDateTime }}</p>
                         </td>
     
                         <td class="edit">

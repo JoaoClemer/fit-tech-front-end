@@ -4,12 +4,13 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InfoCardComponent } from '../../../components/info-card/info-card.component';
 import { PrimaryInputComponent } from '../../../components/primary-input/primary-input.component';
 import { ResponseStudentInListModel } from '../../../models/response/student/response-student-in-list-model';
+import { LocalDateTimePipe } from '../../../pipes/local-date-time.pipe';
 import { StudentService } from '../../../services/student.service';
 
 @Component({
   selector: 'app-students-main',
   standalone: true,
-  imports: [InfoCardComponent, PrimaryInputComponent, ReactiveFormsModule],
+  imports: [InfoCardComponent, PrimaryInputComponent, ReactiveFormsModule, LocalDateTimePipe],
   templateUrl: './students-main.component.html',
   styleUrl: './students-main.component.scss'
 })
@@ -101,14 +102,5 @@ export class StudentsMainComponent implements OnInit {
     this.filterText = this.searchForm.controls['searchText'].value;
 
     this.getStudents();
-  }
-
-  convertDate(date:string):string{
-    if(date == '0001-01-01T00:00:00')
-      return 'Sem plano'
-    
-    const convertedDate = new Date(date).toLocaleString("pt-BR",{timeZone:'America/Sao_Paulo'});
-
-    return convertedDate;
   }
 }
