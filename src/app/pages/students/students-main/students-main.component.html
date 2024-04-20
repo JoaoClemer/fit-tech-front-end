@@ -2,36 +2,42 @@
     <div class="header">
         
         <h3> Alunos </h3>
-        <div>
+        <div class="bread">
             <app-breadcrumbs></app-breadcrumbs>
+            <button class="new-student">Cadastrar novo aluno <i class="bi bi-plus-circle-fill"></i></button>
         </div>
     </div>
 
-    <div class="info-cards">
-        <app-info-card 
-            text="Novos alunos"
-            icon="bi bi-person-fill-up"
-            color="blue"
-            value="3,230.00"/>
-    
-            <app-info-card 
-            text="Novos alunos"
-            icon="bi bi-person-fill-up"
-            color="blue"
-            value="3,230.00"/>
-    
-            <app-info-card 
-            text="Novos alunos"
-            icon="bi bi-person-fill-up"
-            color="blue"
-            value="3,230.00"/>
+    @if (dashboard) {
 
+        <div class="info-cards">
             <app-info-card 
-            text="Novos alunos"
-            icon="bi bi-person-fill-up"
-            color="blue"
-            value="3,230.00"/>
-    </div>
+                text={{dashboard.results[0].title}}
+                icon="bi bi-person-fill-up"
+                color="#3269d9"
+                value={{dashboard.results[0].value}}/>
+        
+                <app-info-card 
+                text={{dashboard.results[1].title}}
+                icon="bi bi-person-fill-x"
+                color="#d9ce32"
+                value={{dashboard.results[1].value}}/>
+        
+                <app-info-card 
+                text={{dashboard.results[2].title}}
+                icon="bi bi-x-circle-fill"
+                color="#d93232"
+                value={{dashboard.results[2].value}}/>
+    
+                <app-info-card 
+                text={{dashboard.results[3].title}}
+                icon="bi bi-currency-exchange"
+                color="#3ebd60"
+                value={{dashboard.results[3].value}}/>
+        </div>
+
+    }
+    
 
     <div class="filters">
         

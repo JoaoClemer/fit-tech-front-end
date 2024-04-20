@@ -1,17 +1,20 @@
+import { AsyncPipe } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BreadcrumbsComponent } from '../../../components/breadcrumbs/breadcrumbs.component';
 import { InfoCardComponent } from '../../../components/info-card/info-card.component';
 import { PrimaryInputComponent } from '../../../components/primary-input/primary-input.component';
+import { ResponseDashBoardModel } from '../../../models/response/shared/response-dashboard-model';
 import { ResponseStudentInListModel } from '../../../models/response/student/response-student-in-list-model';
 import { LocalDateTimePipe } from '../../../pipes/local-date-time.pipe';
+import { DashboardService } from '../../../services/dashboard.service';
 import { StudentService } from '../../../services/student.service';
 
 @Component({
   selector: 'app-students-main',
   standalone: true,
-  imports: [InfoCardComponent, PrimaryInputComponent, ReactiveFormsModule, LocalDateTimePipe, BreadcrumbsComponent],
+  imports: [InfoCardComponent, PrimaryInputComponent, ReactiveFormsModule, LocalDateTimePipe, BreadcrumbsComponent, AsyncPipe],
   templateUrl: './students-main.component.html',
   styleUrl: './students-main.component.scss'
 })
@@ -26,8 +29,11 @@ export class StudentsMainComponent implements OnInit {
   searchForm!: FormGroup;
   students:ResponseStudentInListModel[] = [];
   totalPages:number[] = [];
+  dashboard:ResponseDashBoardModel;
   
-  constructor(private studentService: StudentService){
+  constructor(
+    private studentService: StudentService,
+    private dashboardService: DashboardService){
     this.searchForm = new FormGroup({
       searchText: new FormControl('')
     })
@@ -36,9 +42,10 @@ export class StudentsMainComponent implements OnInit {
   ngOnInit(): void {
 
     this.getStudents();
+    this.getStudentDashboard();
   }
 
-  public getStudents(): void {
+  private getStudents(): void {
 
     this.buildQueryString();
 
@@ -55,6 +62,12 @@ export class StudentsMainComponent implements OnInit {
     })
 
   }
+
+private getStudentDashboard(): void {
+  this.dashboardService.getStudentDashBoard().subscribe(result => {
+    this.dashboard = result;
+  })
+}
 
   private buildQueryString(): void {
 
