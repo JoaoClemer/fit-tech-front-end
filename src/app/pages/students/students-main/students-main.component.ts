@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbsComponent } from '../../../components/breadcrumbs/breadcrumbs.component';
 import { InfoCardComponent } from '../../../components/info-card/info-card.component';
 import { PrimaryInputComponent } from '../../../components/primary-input/primary-input.component';
@@ -33,7 +34,9 @@ export class StudentsMainComponent implements OnInit {
   
   constructor(
     private studentService: StudentService,
-    private dashboardService: DashboardService){
+    private dashboardService: DashboardService,
+    private router:Router,
+    private route: ActivatedRoute){
     this.searchForm = new FormGroup({
       searchText: new FormControl('')
     })
@@ -116,5 +119,9 @@ private getStudentDashboard(): void {
     this.filterText = this.searchForm.controls['searchText'].value;
 
     this.getStudents();
+  }
+
+  public createNewUser(): void {
+    this.router.navigate(['add-edit'], {relativeTo: this.route});
   }
 }

@@ -1,0 +1,139 @@
+<div class="content">
+    <div class="header">
+
+        <h3> Cadastrar aluno </h3>
+
+        <div class="bread">
+            <app-breadcrumbs></app-breadcrumbs>
+        </div>
+
+    </div>
+
+    <form action="" [formGroup]="studentForm" class="basic-info-form">
+
+        <div class="basic-info">
+
+            <h5> Informações Básicas </h5>       
+
+                <div class="section-base-infos">
+
+                    <app-primary-input
+                    inputName="name"
+                    icon="bi bi-person"
+                    placeholder="Nome do aluno"
+                    [formGroup]="studentForm"
+                    formControlName="name"/>
+                      
+                    <app-primary-input
+                    inputName="cpf"
+                    icon="bi bi-person-vcard-fill"
+                    placeholder="CPF do aluno"
+                    [formGroup]="studentForm"
+                    formControlName="cpf"/>
+
+                </div>
+
+                <div class="section-contact-infos">
+
+                    <app-primary-input
+                    inputName="phone"
+                    icon="bi bi-telephone"
+                    placeholder="Celular do aluno"
+                    [formGroup]="studentForm"
+                    formControlName="phone"/>
+
+                    <app-primary-input
+                    inputName="email"
+                    icon="bi bi-envelope-at"
+                    placeholder="Email do aluno"
+                    [formGroup]="studentForm"
+                    formControlName="email"/>
+            
+                </div>
+
+                <div class="section-password">
+
+                    <app-primary-input
+                    inputName="password"
+                    icon="bi bi-lock"
+                    placeholder="Senha do aluno"
+                    [formGroup]="studentForm"
+                    formControlName="password"/>
+
+                    <app-primary-input
+                    inputName="repeatPassword"
+                    icon="bi bi-lock"
+                    placeholder="Repita a senha do aluno"
+                    [formGroup]="studentForm"
+                    formControlName="repeatPassword"/>
+
+                </div>
+        
+        </div>
+
+        <div class="basic-info" formGroupName="address">
+
+            <h5> Informações de endereço </h5>       
+
+                <div class="section-base-infos">
+
+                    <app-primary-input
+                    inputName="street"
+                    icon="bi bi-geo-alt"
+                    placeholder="Nome da rua"
+                    [formGroup]="studentForm"
+                    formControlName="street"/>
+
+                    <app-primary-input
+                    inputName="number"
+                    icon="bi bi-sort-numeric-up"
+                    placeholder="Numero do endereço"
+                    [formGroup]="studentForm"
+                    formControlName="number"/>
+                              
+
+                </div>
+
+                <div class="section-contact-infos">
+
+                    <app-primary-input
+                    inputName="city"
+                    icon="bi bi-compass"
+                    placeholder="Nome da cidade"
+                    [formGroup]="studentForm"
+                    formControlName="city"/>
+
+                    <app-primary-input
+                    inputName="postalCode"
+                    icon="bi bi-house"
+                    placeholder="CEP"
+                    [formGroup]="studentForm"
+                    formControlName="postalCode"/>
+            
+                </div>
+
+                <div class="section-password">
+
+                    
+                    <app-primary-input
+                    inputName="state"
+                    icon="bi bi-pin-map"
+                    placeholder="UF do estado"
+                    [formGroup]="studentForm"
+                    formControlName="state"/>
+
+                    <app-primary-input
+                    inputName="country"
+                    icon="bi bi-map"
+                    placeholder="Nome do páis"
+                    [formGroup]="studentForm"
+                    formControlName="country"/>
+
+                </div>
+        
+        </div>
+
+        <button type="submit"> Salvar Informações <i class="bi bi-check2-circle"></i> </button>
+    </form>
+
+</div>
