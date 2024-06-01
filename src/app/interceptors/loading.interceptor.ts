@@ -3,22 +3,22 @@ import { inject } from '@angular/core';
 import { finalize } from 'rxjs';
 import { LoadingService } from '../services/loading.service';
 
-export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
-  
+export const loadingInterceptor: HttpInterceptorFn = (req, next) => {  
   var activeRequests = 0
   const loadingService = inject(LoadingService); 
 
   if(activeRequests == 0)
-    loadingService.show();
-
+      loadingService.show();
+  
   activeRequests++;
 
   return next(req).pipe(
     finalize(() => {
       activeRequests--;
 
-      if(activeRequests == 0)
-        loadingService.hide();
+      if(activeRequests == 0)        
+          loadingService.hide();
+        
     })
   );
 };

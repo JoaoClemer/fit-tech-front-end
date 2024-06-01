@@ -1,0 +1,310 @@
+<div class="content">
+    <div class="header">
+
+        <h3> Cadastrar aluno </h3>
+
+        <div class="bread">
+            <app-breadcrumbs></app-breadcrumbs>
+        </div>
+
+    </div>
+
+    <form [formGroup]="studentForm" (ngSubmit)="saveStudentsInfo()" class="basic-info-form">
+
+        <div class="basic-info">
+
+            <h5> Informações Básicas </h5>       
+
+                <div class="section-base-infos">
+
+                    <div class="input-container">
+
+                        <app-primary-input
+                        inputName="name"
+                        icon="bi bi-person"
+                        placeholder="Nome do aluno"
+                        [formGroup]="studentForm"
+                        formControlName="name"
+                        (ngModelChange)="detectChange()"/>
+
+                        @if (submitted && studentFormControls['name'].errors) {
+                            <div class="invalid-feedback">
+                                @if (studentFormControls['name'].errors['required']) {
+                                    <span>Nome é obrigatório!</span>
+                                }
+                            </div>
+                        }
+
+                    </div>
+                    
+                    <div class="input-container">
+                        
+                        <app-primary-input
+                        inputName="cpf"
+                        icon="bi bi-person-vcard-fill"
+                        placeholder="CPF do aluno"
+                        [formGroup]="studentForm"
+                        formControlName="cpf"
+                        (ngModelChange)="detectChange()"
+                        mask ="000.000.000-00"/>
+
+                        @if (submitted && studentFormControls['cpf'].errors) {
+                            <div class="invalid-feedback">
+                                @if (studentFormControls['cpf'].errors['required']) {
+                                    <span>CPF é obrigatório!</span>
+                                }
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+
+                <div class="section-base-infos">
+
+                    <div class="input-container">
+                        
+                        <app-primary-input
+                        inputName="phoneNumber"
+                        icon="bi bi-telephone"
+                        placeholder="Celular do aluno"
+                        [formGroup]="studentForm"
+                        formControlName="phoneNumber"
+                        (ngModelChange)="detectChange()"
+                        mask="00 0 0000-0000"/>
+
+                        @if (submitted && studentFormControls['phoneNumber'].errors) {
+                            <div class="invalid-feedback">
+                                @if (studentFormControls['phoneNumber'].errors['required']) {
+                                    <span>Número do celular é obrigatório!</span>
+                                }
+                            </div>
+                        }
+
+                    </div>
+
+
+                    <div class="input-container">
+                        
+                        <app-primary-input
+                        inputName="emailAddress"
+                        type="email"
+                        icon="bi bi-envelope-at"
+                        placeholder="Email do aluno"
+                        [formGroup]="studentForm"
+                        formControlName="emailAddress"
+                        (ngModelChange)="detectChange()"/>
+
+                        @if (submitted && studentFormControls['emailAddress'].errors) {
+                            <div class="invalid-feedback">
+                                @if (studentFormControls['emailAddress'].errors['required']) {
+                                    <span>Email é obrigatório!</span>
+                                }
+                                @if (studentFormControls['emailAddress'].errors['email']) {
+                                    <span>Esse email é inválido!</span>
+                                }
+                            </div>
+                        }
+
+                    </div>
+
+            
+                </div>
+
+                <div class="section-base-infos">
+
+                    <div class="input-container">
+                        
+                        <app-primary-input
+                        inputName="password"
+                        type="password"
+                        icon="bi bi-lock"
+                        placeholder="Senha do aluno"
+                        [formGroup]="studentForm"
+                        formControlName="password"
+                        (ngModelChange)="detectChange()"/>
+
+                        @if (submitted && studentFormControls['password'].errors) {
+                            <div class="invalid-feedback">
+                                @if (studentFormControls['password'].errors['required']) {
+                                    <span>Senha é obrigatório!</span>
+                                }
+                            </div>
+                        }
+
+                    </div>
+
+
+                    <div class="input-container">
+                        
+                        <app-primary-input
+                        inputName="repeatPassword"
+                        type="password"
+                        icon="bi bi-lock"
+                        placeholder="Repita a senha do aluno"
+                        [formGroup]="studentForm"
+                        formControlName="repeatPassword"
+                        (ngModelChange)="detectChange()"/>
+
+                        @if (submitted && studentForm.errors?.['passwordMatchError']) {
+                            <div class="invalid-feedback">
+                                <span>As senhas devem ser iguais!</span>
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+        
+        </div>
+
+        <div class="basic-info" formGroupName="address">
+
+            <h5> Informações de endereço </h5>       
+
+                <div class="section-base-infos">
+
+                    <div class="input-container">
+                        
+                        <app-primary-input
+                        inputName="street"
+                        icon="bi bi-geo-alt"
+                        placeholder="Nome da rua"
+                        [formGroup]="studentForm"
+                        formControlName="street"
+                        (ngModelChange)="detectChange()"/>
+
+                        @if (submitted && addressFormControls['street'].errors) {
+                            <div class="invalid-feedback">
+                                @if (addressFormControls['street'].errors['required']) {
+                                    <span>Nome da rua é obrigatório!</span>
+                                }
+                            </div>
+                        }
+
+                    </div>
+
+
+                    <div class="input-container">
+                        
+                        <app-primary-input
+                        inputName="number"
+                        icon="bi bi-sort-numeric-up"
+                        placeholder="Numero do endereço"
+                        [formGroup]="studentForm"
+                        formControlName="number"
+                        (ngModelChange)="detectChange()"/>
+
+                        @if (submitted && addressFormControls['number'].errors) {
+                            <div class="invalid-feedback">
+                                @if (addressFormControls['number'].errors['required']) {
+                                    <span>Numero é obrigatório!</span>
+                                }
+                            </div>
+                        }
+
+                    </div>
+
+                              
+
+                </div>
+
+                <div class="section-base-infos">
+                    
+                    <div class="input-container">
+
+                        <app-primary-input
+                        inputName="city"
+                        icon="bi bi-compass"
+                        placeholder="Nome da cidade"
+                        [formGroup]="studentForm"
+                        formControlName="city"
+                        (ngModelChange)="detectChange()"/>
+
+                        @if (submitted && addressFormControls['city'].errors) {
+                            <div class="invalid-feedback">
+                                @if (addressFormControls['city'].errors['required']) {
+                                    <span>Nome da cidade é obrigatório!</span>
+                                }                              
+                            </div>
+                        }
+
+                    </div>
+                    
+
+                    <div class="input-container">
+                        
+                        <app-primary-input
+                        inputName="postalCode"
+                        icon="bi bi-house"
+                        placeholder="CEP"
+                        [formGroup]="studentForm"
+                        formControlName="postalCode"
+                        (ngModelChange)="detectChange()"
+                        mask="00000-000"/>
+
+                        @if (submitted && addressFormControls['postalCode'].errors) {
+                            <div class="invalid-feedback">
+                                @if (addressFormControls['postalCode'].errors['required']) {
+                                    <span>CEP é obrigatório!</span>
+                                }                              
+                            </div>
+                        }
+
+                    </div>
+            
+                </div>
+
+                <div class="section-base-infos">
+
+                    <div class="input-container">
+                        
+                        <app-primary-input
+                        inputName="state"
+                        icon="bi bi-pin-map"
+                        placeholder="UF do estado"
+                        [formGroup]="studentForm"
+                        formControlName="state"
+                        (ngModelChange)="detectChange()"
+                        mask="SS"/>
+
+                        @if (submitted && addressFormControls['state'].errors) {
+                            <div class="invalid-feedback">
+                                @if (addressFormControls['state'].errors['required']) {
+                                    <span>Nome do estado é obrigatório!</span>
+                                }                              
+                            </div>
+                        }
+
+                    </div>
+                    
+
+                    <div class="input-container">
+
+                        <app-primary-input
+                        inputName="country"
+                        icon="bi bi-map"
+                        placeholder="Nome do páis"
+                        [formGroup]="studentForm"
+                        formControlName="country"
+                        (ngModelChange)="detectChange()"/>
+
+                        @if (submitted && addressFormControls['country'].errors) {
+                            <div class="invalid-feedback">
+                                @if (addressFormControls['country'].errors['required']) {
+                                    <span>Nome do país é obrigatório!</span>
+                                }                              
+                            </div>
+                        }
+
+                    </div>
+                    
+
+                </div>
+        
+        </div>
+
+        <button type="submit"> Salvar Informações <i class="bi bi-check2-circle"></i> </button>
+    </form>
+
+</div>
