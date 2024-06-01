@@ -65,17 +65,17 @@
                     <div class="input-container">
                         
                         <app-primary-input
-                        inputName="phone"
+                        inputName="phoneNumber"
                         icon="bi bi-telephone"
                         placeholder="Celular do aluno"
                         [formGroup]="studentForm"
-                        formControlName="phone"
+                        formControlName="phoneNumber"
                         (ngModelChange)="detectChange()"
                         mask="00 0 0000-0000"/>
 
-                        @if (submitted && studentFormControls['phone'].errors) {
+                        @if (submitted && studentFormControls['phoneNumber'].errors) {
                             <div class="invalid-feedback">
-                                @if (studentFormControls['phone'].errors['required']) {
+                                @if (studentFormControls['phoneNumber'].errors['required']) {
                                     <span>Número do celular é obrigatório!</span>
                                 }
                             </div>
@@ -87,20 +87,20 @@
                     <div class="input-container">
                         
                         <app-primary-input
-                        inputName="email"
+                        inputName="emailAddress"
                         type="email"
                         icon="bi bi-envelope-at"
                         placeholder="Email do aluno"
                         [formGroup]="studentForm"
-                        formControlName="email"
+                        formControlName="emailAddress"
                         (ngModelChange)="detectChange()"/>
 
-                        @if (submitted && studentFormControls['email'].errors) {
+                        @if (submitted && studentFormControls['emailAddress'].errors) {
                             <div class="invalid-feedback">
-                                @if (studentFormControls['email'].errors['required']) {
+                                @if (studentFormControls['emailAddress'].errors['required']) {
                                     <span>Email é obrigatório!</span>
                                 }
-                                @if (studentFormControls['email'].errors['email']) {
+                                @if (studentFormControls['emailAddress'].errors['email']) {
                                     <span>Esse email é inválido!</span>
                                 }
                             </div>

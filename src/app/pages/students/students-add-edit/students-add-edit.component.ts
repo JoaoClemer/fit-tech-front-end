@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 import { BreadcrumbsComponent } from '../../../components/breadcrumbs/breadcrumbs.component';
 import { PrimaryInputComponent } from '../../../components/primary-input/primary-input.component';
+import { RequestCreateStudentModel } from '../../../models/request/student/request-create-student-mode';
+import { StudentService } from '../../../services/student.service';
 import { matchPassword } from '../../../validators/match-password-validator';
 
 @Component({
@@ -15,15 +18,15 @@ export class StudentsAddEditComponent implements OnInit {
   submitted = false;
   studentForm!: FormGroup;
 
-  constructor(){
+  constructor(private studentService: StudentService){
 
     this.studentForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      emailAddress: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required,Validators.minLength(6)]),
       repeatPassword: new FormControl('', [Validators.required,Validators.minLength(6)]),
       cpf: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required]),
+      phoneNumber: new FormControl('', [Validators.required]),
       address: new FormGroup({
         street: new FormControl('',[Validators.required]),
         city: new FormControl('', [Validators.required]),
@@ -39,6 +42,7 @@ export class StudentsAddEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   get studentFormControls(): { [key:string]: AbstractControl } {
@@ -56,7 +60,28 @@ export class StudentsAddEditComponent implements OnInit {
   }
  
   saveStudentsInfo(): void {
-    this.submitted = true; 
+    this.submitted = true;
+    
+    if(this.studentForm.valid){
+      var createUserRequest = this.studentForm.value as RequestCreateStudentModel;
+      createUserRequest.address.state.toUpperCase();
+      createUserRequest.gymId = 1;
+      console.log(createUserRequest);
+      this.createUser(createUserRequest);
 
+    }else{
+      Swal.fire({
+        icon: "error",
+        title: "Ops.. Ocorreu algum problema!",
+        text: "Alguma das informações preenchida está incorreta, verifique as informações e tente novamente."
+      });
+    } 
+
+  }
+
+  createUser(requestCreateStudent:RequestCreateStudentModel): void{
+    this.studentService.createStudent(requestCreateStudent).subscribe(result => {
+      console.log(result);
+    });
   }
 }
