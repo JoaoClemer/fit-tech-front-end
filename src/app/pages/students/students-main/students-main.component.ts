@@ -124,4 +124,8 @@ private getStudentDashboard(): void {
   public createNewUser(): void {
     this.router.navigate(['add-edit'], {relativeTo: this.route});
   }
+
+  public editStudent(studentId:number) : void {
+    this.router.navigate([`add-edit/${studentId}`],{relativeTo: this.route});
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { BreadcrumbsComponent } from '../../../components/breadcrumbs/breadcrumbs.component';
 import { PrimaryInputComponent } from '../../../components/primary-input/primary-input.component';
@@ -17,8 +18,11 @@ import { matchPassword } from '../../../validators/match-password-validator';
 export class StudentsAddEditComponent implements OnInit {
   submitted = false;
   studentForm!: FormGroup;
+  studentId:number;
 
-  constructor(private studentService: StudentService){
+  constructor(private studentService: StudentService,
+    private route: ActivatedRoute
+  ){
 
     this.studentForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -42,7 +46,9 @@ export class StudentsAddEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.studentId = this.route.snapshot.params['id'];
+    if(this.studentId != undefined)
+      this.loadStudentInfo();
   }
 
   get studentFormControls(): { [key:string]: AbstractControl } {
@@ -67,7 +73,7 @@ export class StudentsAddEditComponent implements OnInit {
       createUserRequest.address.state.toUpperCase();
       createUserRequest.gymId = 1;
       console.log(createUserRequest);
-      this.createUser(createUserRequest);
+      this.createStudent(createUserRequest);
 
     }else{
       Swal.fire({
@@ -79,9 +85,14 @@ export class StudentsAddEditComponent implements OnInit {
 
   }
 
-  createUser(requestCreateStudent:RequestCreateStudentModel): void{
+  createStudent(requestCreateStudent:RequestCreateStudentModel): void{
     this.studentService.createStudent(requestCreateStudent).subscribe(result => {
-      console.log(result);
     });
+  }
+
+  loadStudentInfo() : void{
+    this.studentService.getStudentInfoById(this.studentId).subscribe(result => {
+      this.studentForm.patchValue(result);
+    })
   }
 }

@@ -14,7 +14,8 @@ export const routes: Routes = [
         {path:'home', component:HomeComponent, canActivate:[authGuard], data:{ breadcrumb: 'Home' }  },
         {path: 'students', children: [
             {path: '', component:StudentsMainComponent, canActivate:[authGuard], data:{ breadcrumb: 'Students' }},
-            {path: 'add-edit', component: StudentsAddEditComponent, canActivate:[authGuard], data:{ breadcrumb: 'AddEdit'}}
+            {path: 'add-edit', component: StudentsAddEditComponent, canActivate:[authGuard], data:{ breadcrumb: 'AddEdit'}},
+            {path: 'add-edit/:id', component: StudentsAddEditComponent, canActivate:[authGuard], data:{Breadcrumb: 'AddEdit'}}
         ]}
     ]},
 

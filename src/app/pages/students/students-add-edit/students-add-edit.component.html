@@ -111,50 +111,54 @@
             
                 </div>
 
-                <div class="section-base-infos">
+                @if (!studentId){
+                    
+                    <div class="section-base-infos">
 
-                    <div class="input-container">
-                        
-                        <app-primary-input
-                        inputName="password"
-                        type="password"
-                        icon="bi bi-lock"
-                        placeholder="Senha do aluno"
-                        [formGroup]="studentForm"
-                        formControlName="password"
-                        (ngModelChange)="detectChange()"/>
-
-                        @if (submitted && studentFormControls['password'].errors) {
-                            <div class="invalid-feedback">
-                                @if (studentFormControls['password'].errors['required']) {
-                                    <span>Senha é obrigatório!</span>
-                                }
-                            </div>
-                        }
-
+                        <div class="input-container">
+                            
+                            <app-primary-input
+                            inputName="password"
+                            type="password"
+                            icon="bi bi-lock"
+                            placeholder="Senha do aluno"
+                            [formGroup]="studentForm"
+                            formControlName="password"
+                            (ngModelChange)="detectChange()"/>
+    
+                            @if (submitted && studentFormControls['password'].errors) {
+                                <div class="invalid-feedback">
+                                    @if (studentFormControls['password'].errors['required']) {
+                                        <span>Senha é obrigatório!</span>
+                                    }
+                                </div>
+                            }
+    
+                        </div>
+    
+    
+                        <div class="input-container">
+                            
+                            <app-primary-input
+                            inputName="repeatPassword"
+                            type="password"
+                            icon="bi bi-lock"
+                            placeholder="Repita a senha do aluno"
+                            [formGroup]="studentForm"
+                            formControlName="repeatPassword"
+                            (ngModelChange)="detectChange()"/>
+    
+                            @if (submitted && studentForm.errors?.['passwordMatchError']) {
+                                <div class="invalid-feedback">
+                                    <span>As senhas devem ser iguais!</span>
+                                </div>
+                            }
+    
+                        </div>
+    
                     </div>
-
-
-                    <div class="input-container">
-                        
-                        <app-primary-input
-                        inputName="repeatPassword"
-                        type="password"
-                        icon="bi bi-lock"
-                        placeholder="Repita a senha do aluno"
-                        [formGroup]="studentForm"
-                        formControlName="repeatPassword"
-                        (ngModelChange)="detectChange()"/>
-
-                        @if (submitted && studentForm.errors?.['passwordMatchError']) {
-                            <div class="invalid-feedback">
-                                <span>As senhas devem ser iguais!</span>
-                            </div>
-                        }
-
-                    </div>
-
-                </div>
+                }
+                
         
         </div>
 
